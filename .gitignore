@@ -1,0 +1,9 @@
+# Generated files (NSwag)
+Template/HiP-MicroServiceTemplate.Sdk/swagger.json
+Template/HiP-MicroServiceTemplate.Sdk/*.g.cs
+
+# Visual Studio files/folders & build folders
+.vs/
+bin/
+obj/
+*.user

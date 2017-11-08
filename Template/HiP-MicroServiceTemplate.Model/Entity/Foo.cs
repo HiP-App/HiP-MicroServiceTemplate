@@ -1,0 +1,13 @@
+﻿namespace HiP_MicroServiceTemplate.Entity
+{
+    /// <summary>
+    /// A sample entity type. Entity types are types of which the objects are persisted
+    /// in the Mongo cache database. Entity types should be placed in the "Entity"-folder.
+    /// </summary>
+    public class Foo : ContentBase
+    {
+        public string DisplayName { get; set; }
+
+        public bool IsBar { get; set; }
+    }
+}
