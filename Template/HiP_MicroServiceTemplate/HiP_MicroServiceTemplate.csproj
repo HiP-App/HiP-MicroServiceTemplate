@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HiP-MicroServiceTemplate.Model\HiP-MicroServiceTemplate.Model.csproj" />
+    <ProjectReference Include="..\HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(OS)'=='Windows_NT'">

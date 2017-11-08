@@ -1,6 +1,6 @@
 {
     "author": "HiP",
-    "classifications": [ "Web" ],
+    "classifications": [ "HiP" ],
     "name": "HiP Backend Service",
     "identity": "HiP.BackendService", // Unique name for this template
     "shortName": "hipapi", // Short name that can be used on the cli

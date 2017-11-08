@@ -7,10 +7,10 @@ RUN mkdir -p /data/db
 RUN mkdir -p /dotnetapp
 
 COPY . /dotnetapp
-WORKDIR /dotnetapp/HiP-MicroServiceTemplate
+WORKDIR /dotnetapp/HiP_MicroServiceTemplate
 
 EXPOSE 5000
 
 RUN dotnet build
-RUN chmod +x /dotnetapp/HiP-MicroServiceTemplate/run.sh
-CMD /dotnetapp/HiP-MicroServiceTemplate/run.sh
+RUN chmod +x /dotnetapp/HiP_MicroServiceTemplate/run.sh
+CMD /dotnetapp/HiP_MicroServiceTemplate/run.sh
