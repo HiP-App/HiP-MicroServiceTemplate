@@ -7,8 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Model", "HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj", "{3D20234B-5937-4105-8384-31AC0A0FC09F}"
 EndProject
+#if (MakeSdk)
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiP_MicroServiceTemplate.Sdk", "HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj", "{99A3A08A-CC11-4DF1-9745-44CADA104BC7}"
 EndProject
+#endif
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +25,12 @@ Global
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		#if (MakeSdk)
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		#endif
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

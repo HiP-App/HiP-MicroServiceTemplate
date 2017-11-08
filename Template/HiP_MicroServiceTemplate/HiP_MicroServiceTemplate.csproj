@@ -17,7 +17,9 @@
     <PackageReference Include="EventStore.ClientAPI.NetCore" Version="4.0.3-rc" />
     <PackageReference Include="HiP-WebserviceLib" Version="2.1.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="11.12.5" />
+    <!--#if (MakeSdk)-->
     <PackageReference Include="NSwag.MSBuild" Version="11.12.6" />
+    <!--#endif-->
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +29,12 @@
   <ItemGroup>
     <ProjectReference Include="..\HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj" />
   </ItemGroup>
-
+  <!--#if (MakeSdk)-->
+  
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(OS)'=='Windows_NT'">
     <Exec Command="$(NSwagExe_Core20) webapi2swagger /assembly:$(TargetPath) /output:../$(ProjectName).Sdk/swagger.json" />
     <Exec Command="$(NSwagExe_Core20) swagger2csclient /input:../$(ProjectName).Sdk/swagger.json /output:../$(ProjectName).Sdk/NSwag.g.cs /namespace:$(RootNamespace) /clientBaseClass:NSwagClientBase /useHttpClientCreationMethod:true /generateOptionalParameters:true /arrayType:System.Collections.Generic.IReadOnlyList" />
   </Target>
+  <!--#endif-->
 
 </Project>

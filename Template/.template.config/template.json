@@ -8,5 +8,31 @@
         "language": "C#"
     },
     "sourceName": "HiP_MicroServiceTemplate", // Will replace the string with the value provided via -n.
-    "preferNameDirectory": true
+    "preferNameDirectory": true,
+
+    "symbols": {
+        "MakeSdk": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "false"
+        }
+    },
+
+    "sources": [
+        {
+            "exclude": [ ".vs/**/*", ".template.config/**/*" ],
+            "modifiers": [
+                {
+                    "condition": "(!MakeSdk)",
+                    "exclude": "HiP_MicroServiceTemplate.Sdk/**/*"
+                },
+                {
+                    "rename": {
+                        ".gitignore.example": ".gitignore"
+                    }
+                }
+            ]
+        }
+    ]
+
 }
