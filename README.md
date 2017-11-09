@@ -1,5 +1,5 @@
 # HiP-MicroServiceTemplate
-A template for "dotnet new" for creating backend services that make use of event sourcing.
+A custom "dotnet new"-template for creating backend services that make use of event sourcing.
 
 ## How to Use
 1. Clone the repository or download as ZIP-file
