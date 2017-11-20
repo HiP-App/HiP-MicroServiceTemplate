@@ -11,6 +11,7 @@ using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.Processors.Security;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using System.Reflection;
 
 namespace HiP_MicroServiceTemplate
 {
@@ -75,6 +76,7 @@ namespace HiP_MicroServiceTemplate
 
             app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings
             {
+                Title = Assembly.GetEntryAssembly().GetName().Name,
                 DocExpansion = "list",
                 PostProcess = doc =>
                 {
