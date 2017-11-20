@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using NJsonSchema;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.Processors.Security;
@@ -77,6 +78,7 @@ namespace HiP_MicroServiceTemplate
             app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings
             {
                 Title = Assembly.GetEntryAssembly().GetName().Name,
+                DefaultEnumHandling = EnumHandling.String,
                 DocExpansion = "list",
                 PostProcess = doc =>
                 {
