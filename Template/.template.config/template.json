@@ -24,7 +24,11 @@
             "modifiers": [
                 {
                     "condition": "(!MakeSdk)",
-                    "exclude": "HiP_MicroServiceTemplate.Sdk/**/*"
+                    "exclude": [
+                        "HiP_MicroServiceTemplate.Sdk/**/*",
+                        "NuGetPack.ps1",
+                        "NPMPack.ps1"
+                    ]
                 },
                 {
                     "rename": {
