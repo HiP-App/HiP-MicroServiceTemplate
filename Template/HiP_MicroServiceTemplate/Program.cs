@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
 {
     public class Program
     {

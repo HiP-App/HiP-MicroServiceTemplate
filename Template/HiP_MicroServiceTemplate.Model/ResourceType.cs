@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-namespace HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model
 {
     public class ResourceType : IEquatable<ResourceType>
     {

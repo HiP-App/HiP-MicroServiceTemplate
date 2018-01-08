@@ -1,4 +1,4 @@
-﻿namespace HiP_MicroServiceTemplate.Utility
+﻿namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility
 {
     public class EndpointConfig
     {

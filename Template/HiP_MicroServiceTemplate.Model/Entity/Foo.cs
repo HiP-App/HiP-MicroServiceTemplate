@@ -1,4 +1,4 @@
-﻿namespace HiP_MicroServiceTemplate.Entity
+﻿namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
 {
     /// <summary>
     /// A sample entity type. Entity types are types of which the objects are persisted

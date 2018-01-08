@@ -1,6 +1,4 @@
-﻿using HiP_MicroServiceTemplate.Core;
-using HiP_MicroServiceTemplate.Utility;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,9 +7,11 @@ using Microsoft.Extensions.Options;
 using NSwag.AspNetCore;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using PaderbornUniversity.SILab.Hip.Webservice;
 
-namespace HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
 {
     public class Startup
     {

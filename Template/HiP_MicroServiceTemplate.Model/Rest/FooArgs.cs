@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HiP_MicroServiceTemplate.Rest
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
 {
     /// <summary>
     /// Specifies the parameters for creating new Foo-resources.

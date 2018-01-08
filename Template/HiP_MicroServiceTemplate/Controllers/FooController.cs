@@ -1,18 +1,19 @@
-﻿using HiP_MicroServiceTemplate.Core;
-using HiP_MicroServiceTemplate.Entity;
-using HiP_MicroServiceTemplate.Events;
-using HiP_MicroServiceTemplate.Rest;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest;
 using PaderbornUniversity.SILab.Hip.Webservice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HiP_MicroServiceTemplate.Controllers
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
 {
     //[Authorize] <-- TODO: Uncomment to force authentication
     [Route("api/[controller]")]

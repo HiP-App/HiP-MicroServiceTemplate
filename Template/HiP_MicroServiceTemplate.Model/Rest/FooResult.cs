@@ -1,4 +1,4 @@
-﻿namespace HiP_MicroServiceTemplate.Rest
+﻿namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
 {
     /// <summary>
     /// The type of objects that are returned for Foo-queries.

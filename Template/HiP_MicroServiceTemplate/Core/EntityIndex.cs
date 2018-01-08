@@ -1,9 +1,10 @@
-﻿using HiP_MicroServiceTemplate.Events;
-using PaderbornUniversity.SILab.Hip.EventSourcing;
+﻿using PaderbornUniversity.SILab.Hip.EventSourcing;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
 using System;
 using System.Collections.Generic;
 
-namespace HiP_MicroServiceTemplate.Core
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
 {
     /// <summary>
     /// Keeps track of all entities.

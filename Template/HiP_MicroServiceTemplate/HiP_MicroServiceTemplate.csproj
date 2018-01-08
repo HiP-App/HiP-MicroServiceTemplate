@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RootNamespace>HiP_MicroServiceTemplate</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <NoWarn>1701;1702;1705;1591</NoWarn>
