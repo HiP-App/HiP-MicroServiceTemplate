@@ -27,9 +27,10 @@ namespace HiP_MicroServiceTemplate
             // Read configuration from JSON and/or environment variables
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/configuration#use-options-and-configuration-objects)
             services
-                .Configure<AuthConfig>(Configuration.GetSection("Auth"))
                 .Configure<EndpointConfig>(Configuration.GetSection("Endpoints"))
-                .Configure<EventStoreConfig>(Configuration.GetSection("EventStore"));
+                .Configure<EventStoreConfig>(Configuration.GetSection("EventStore"))
+                .Configure<AuthConfig>(Configuration.GetSection("Auth"))
+                .Configure<CorsConfig>(Configuration);
 
             // Register services that can be injected into controllers and other services
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
@@ -64,12 +65,25 @@ namespace HiP_MicroServiceTemplate
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<CorsConfig> corsConfig)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            // CacheDatabaseManager should start up immediately (not only when injected into a controller or
+            // something), so we manually request an instance here
+            app.ApplicationServices.GetService<CacheDatabaseManager>();
+
             app.UseRequestSchemeFixer();
+            app.UseCors(builder =>
+            {
+                var corsEnvConf = corsConfig.Value.Cors[env.EnvironmentName];
+                builder
+                    .WithOrigins(corsEnvConf.Origins)
+                    .WithMethods(corsEnvConf.Methods)
+                    .WithHeaders(corsEnvConf.Headers)
+                    .WithExposedHeaders(corsEnvConf.ExposedHeaders);
+            });
             app.UseAuthentication();
             app.UseMvc();
             app.UseSwaggerUiHip();

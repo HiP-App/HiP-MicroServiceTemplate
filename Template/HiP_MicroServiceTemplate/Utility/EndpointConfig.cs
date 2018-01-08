@@ -4,14 +4,14 @@
     {
         /// <summary>
         /// Connection string for the Mongo DB cache database.
-        /// Example: "mongodb://localhost:27017"
+        /// Default value: "mongodb://localhost:27017"
         /// </summary>
-        public string MongoDbHost { get; set; }
+        public string MongoDbHost { get; set; } = "mongodb://localhost:27017";
 
         /// <summary>
         /// Name of the database to use.
-        /// Example: "main"
+        /// Default value: "main"
         /// </summary>
-        public string MongoDbName { get; set; }
+        public string MongoDbName { get; set; } = "main";
     }
 }
