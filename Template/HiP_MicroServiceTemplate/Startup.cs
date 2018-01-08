@@ -1,20 +1,17 @@
-﻿using HiP_MicroServiceTemplate.Core;
-using HiP_MicroServiceTemplate.Utility;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NJsonSchema;
-using NSwag;
 using NSwag.AspNetCore;
-using NSwag.SwaggerGeneration.Processors.Security;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
-using System.Reflection;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
+using PaderbornUniversity.SILab.Hip.Webservice;
 
-namespace HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
 {
     public class Startup
     {
@@ -30,9 +27,10 @@ namespace HiP_MicroServiceTemplate
             // Read configuration from JSON and/or environment variables
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/configuration#use-options-and-configuration-objects)
             services
-                .Configure<AuthConfig>(Configuration.GetSection("Auth"))
                 .Configure<EndpointConfig>(Configuration.GetSection("Endpoints"))
-                .Configure<EventStoreConfig>(Configuration.GetSection("EventStore"));
+                .Configure<EventStoreConfig>(Configuration.GetSection("EventStore"))
+                .Configure<AuthConfig>(Configuration.GetSection("Auth"))
+                .Configure<CorsConfig>(Configuration);
 
             // Register services that can be injected into controllers and other services
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
@@ -67,32 +65,28 @@ namespace HiP_MicroServiceTemplate
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<CorsConfig> corsConfig)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            // CacheDatabaseManager should start up immediately (not only when injected into a controller or
+            // something), so we manually request an instance here
+            app.ApplicationServices.GetService<CacheDatabaseManager>();
+
+            app.UseRequestSchemeFixer();
+            app.UseCors(builder =>
+            {
+                var corsEnvConf = corsConfig.Value.Cors[env.EnvironmentName];
+                builder
+                    .WithOrigins(corsEnvConf.Origins)
+                    .WithMethods(corsEnvConf.Methods)
+                    .WithHeaders(corsEnvConf.Headers)
+                    .WithExposedHeaders(corsEnvConf.ExposedHeaders);
+            });
             app.UseAuthentication();
             app.UseMvc();
-
-            app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings
-            {
-                Title = Assembly.GetEntryAssembly().GetName().Name,
-                DefaultEnumHandling = EnumHandling.String,
-                DocExpansion = "list",
-                PostProcess = doc =>
-                {
-                    foreach (var op in doc.Operations)
-                    {
-                        op.Operation.Parameters.Add(new SwaggerParameter
-                        {
-                            Name = "Authorization",
-                            Kind = SwaggerParameterKind.Header,
-                            IsRequired = true
-                        });
-                    }
-                }
-            });
+            app.UseSwaggerUiHip();
         }
     }
 }

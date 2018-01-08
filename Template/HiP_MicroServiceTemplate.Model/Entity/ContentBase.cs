@@ -1,7 +1,6 @@
-﻿using HiP_MicroServiceTemplate.Model.Entity;
-using System;
+﻿using System;
 
-namespace HiP_MicroServiceTemplate.Entity
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
 {
     public abstract class ContentBase : IEntity<int>
     {

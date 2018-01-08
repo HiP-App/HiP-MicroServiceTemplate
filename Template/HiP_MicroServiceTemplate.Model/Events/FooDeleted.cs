@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HiP_MicroServiceTemplate.Events
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events
 {
     public class FooDeleted : IDeleteEvent, IUserActivityEvent
     {

@@ -1,7 +1,7 @@
-﻿using HiP_MicroServiceTemplate.Rest;
+﻿using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest;
 using System;
 
-namespace HiP_MicroServiceTemplate.Events
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events
 {
     public class FooCreated : ICreateEvent, IUserActivityEvent
     {

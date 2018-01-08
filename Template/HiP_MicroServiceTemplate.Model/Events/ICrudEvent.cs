@@ -1,7 +1,7 @@
 ﻿using PaderbornUniversity.SILab.Hip.EventSourcing;
 using System;
 
-namespace HiP_MicroServiceTemplate.Events
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events
 {
     /// <summary>
     /// An event for simple create, update and delete operations.

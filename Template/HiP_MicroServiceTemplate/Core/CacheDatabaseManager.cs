@@ -1,14 +1,15 @@
-﻿using HiP_MicroServiceTemplate.Entity;
-using HiP_MicroServiceTemplate.Events;
-using HiP_MicroServiceTemplate.Utility;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using System;
 
-namespace HiP_MicroServiceTemplate.Core
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
 {
     /// <summary>
     /// Subscribes to EventStore events to keep the cache database up to date.
