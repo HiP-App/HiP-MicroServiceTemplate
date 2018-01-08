@@ -6,13 +6,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NJsonSchema;
-using NSwag;
 using NSwag.AspNetCore;
-using NSwag.SwaggerGeneration.Processors.Security;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
-using System.Reflection;
+using PaderbornUniversity.SILab.Hip.Webservice;
 
 namespace HiP_MicroServiceTemplate
 {
@@ -72,27 +69,10 @@ namespace HiP_MicroServiceTemplate
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
+            app.UseRequestSchemeFixer();
             app.UseAuthentication();
             app.UseMvc();
-
-            app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings
-            {
-                Title = Assembly.GetEntryAssembly().GetName().Name,
-                DefaultEnumHandling = EnumHandling.String,
-                DocExpansion = "list",
-                PostProcess = doc =>
-                {
-                    foreach (var op in doc.Operations)
-                    {
-                        op.Operation.Parameters.Add(new SwaggerParameter
-                        {
-                            Name = "Authorization",
-                            Kind = SwaggerParameterKind.Header,
-                            IsRequired = true
-                        });
-                    }
-                }
-            });
+            app.UseSwaggerUiHip();
         }
     }
 }
