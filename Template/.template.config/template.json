@@ -44,7 +44,8 @@
                         "HiP_MicroServiceTemplate.Sdk/**/*",
 						"HiP_MicroServiceTemplate.TypeScript/**/*",
                         "NuGetPack.ps1",
-                        "NPMPack.ps1"
+                        "NPMPack.ps1",
+						"swagger.json"
                     ]
                 },
                 {

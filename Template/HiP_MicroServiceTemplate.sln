@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Model", "HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj", "{3D20234B-5937-4105-8384-31AC0A0FC09F}"
 EndProject
+#if (MakeSdk)
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Sdk", "HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj", "{99A3A08A-CC11-4DF1-9745-44CADA104BC7}"
+#endif
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
