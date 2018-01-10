@@ -23,17 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events
         /// </summary>
         DateTimeOffset Timestamp { get; }
     }
-    public interface ICreateEvent : ICrudEvent
-    {
-    }
-
-    public interface IUpdateEvent : ICrudEvent
-    {
-    }
-
-    public interface IDeleteEvent : ICrudEvent
-    {
-    }
 
     public interface IUserActivityEvent : ICrudEvent
     {

@@ -1,6 +1,11 @@
 # Generated files (NSwag)
-Template/HiP_MicroServiceTemplate.Sdk/swagger.json
+Template/swagger.json
 Template/HiP_MicroServiceTemplate.Sdk/*.g.cs
+Template/HiP_MicroServiceTemplate.TypeScript/package/dist/
+Template/HiP_MicroServiceTemplate.TypeScript/package/lib/
+Template/HiP_MicroServiceTemplate.TypeScript/package/node_modules/
+Template/HiP_MicroServiceTemplate.TypeScript/package/*.tgz
+Template/HiP_MicroServiceTemplate.TypeScript/package/.npmrc
 
 # Visual Studio files/folders & build folders
 .vs/

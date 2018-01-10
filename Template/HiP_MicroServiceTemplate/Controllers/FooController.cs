@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var foos = _db.Database.GetCollection<Foo>(ResourceType.Foo.Name)
+            var foos = _db.Database.GetCollection<Foo>(ResourceTypes.Foo.Name)
                 .AsQueryable()
                 .ToList();
 
@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var foo = _db.Database.GetCollection<Foo>(ResourceType.Foo.Name)
+            var foo = _db.Database.GetCollection<Foo>(ResourceTypes.Foo.Name)
                 .AsQueryable()
                 .FirstOrDefault(x => x.Id == id);
 
@@ -79,16 +79,9 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var ev = new FooCreated
-            {
-                Id = _entityIndex.NextId(ResourceType.Foo),
-                UserId = User.Identity.GetUserIdentity(),
-                Properties = args,
-                Timestamp = DateTimeOffset.Now
-            };
-
-            await _eventStore.AppendEventAsync(ev);
-            return Created($"{Request.Scheme}://{Request.Host}/api/Foo/{ev.Id}", ev.Id);
+            var id = _entityIndex.NextId(ResourceTypes.Foo);
+            await EntityManager.CreateEntityAsync(_eventStore, args, ResourceTypes.Foo, id, User.Identity.GetUserIdentity());
+            return Created($"{Request.Scheme}://{Request.Host}/api/Foo/{id}", id);
         }
 
         [HttpDelete("{id}")]
@@ -100,17 +93,10 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!_entityIndex.Exists(ResourceType.Foo, id))
+            if (!_entityIndex.Exists(ResourceTypes.Foo, id))
                 return NotFound();
 
-            var ev = new FooDeleted
-            {
-                Id = id,
-                UserId = User.Identity.GetUserIdentity(),
-                Timestamp = DateTimeOffset.Now
-            };
-
-            await _eventStore.AppendEventAsync(ev);
+            await EntityManager.DeleteEntityAsync(_eventStore, ResourceTypes.Foo, id, User.Identity.GetUserIdentity());
             return NoContent();
         }
     }

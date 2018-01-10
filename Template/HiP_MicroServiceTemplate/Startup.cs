@@ -8,6 +8,7 @@ using NSwag.AspNetCore;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using PaderbornUniversity.SILab.Hip.Webservice;
 
@@ -18,6 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ResourceTypes.Initialize();
         }
 
         public IConfiguration Configuration { get; }
