@@ -25,10 +25,12 @@ Global
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D20234B-5937-4105-8384-31AC0A0FC09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		#if (MakeSdk)
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99A3A08A-CC11-4DF1-9745-44CADA104BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		#endif
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
