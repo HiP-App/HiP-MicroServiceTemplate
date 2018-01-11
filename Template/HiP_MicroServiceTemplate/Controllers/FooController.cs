@@ -5,10 +5,8 @@ using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest;
 using PaderbornUniversity.SILab.Hip.Webservice;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,7 +63,9 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             {
                 Id = id,
                 DisplayName = foo.DisplayName,
-                IsBar = foo.IsBar
+                IsBar = foo.IsBar,
+                UserId = foo.UserId,
+                Timestamp = foo.Timestamp
             };
 
             return Ok(result);
@@ -83,6 +83,25 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             await EntityManager.CreateEntityAsync(_eventStore, args, ResourceTypes.Foo, id, User.Identity.GetUserIdentity());
             return Created($"{Request.Scheme}://{Request.Host}/api/Foo/{id}", id);
         }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+
+        public async Task<IActionResult> PutAsync(int id, [FromBody]FooArgs args)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!_entityIndex.Exists(ResourceTypes.Foo, id))
+                return NotFound();
+            var oldFoo = await EventStreamExtensions.GetCurrentEntityAsync<FooArgs>(_eventStore.EventStream, ResourceTypes.Foo, id);
+
+            await EntityManager.UpdateEntityAsync(_eventStore, oldFoo, args, ResourceTypes.Foo, id, User.Identity.GetUserIdentity());
+            return NoContent();
+        }
+
 
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]

@@ -1,4 +1,6 @@
-﻿namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
+﻿using System;
+
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
 {
     /// <summary>
     /// The type of objects that are returned for Foo-queries.
@@ -10,5 +12,9 @@
         public string DisplayName { get; set; }
 
         public bool IsBar { get; set; }
+
+        public string UserId { get; set; }
+
+        public DateTimeOffset Timestamp { get; set; }
     }
 }

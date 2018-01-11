@@ -77,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
                             {
                                 Id = e.Id,
                                 Timestamp = e.Timestamp,
-                                UserId = e.UserId
+                                UserId = originalFoo.UserId
                             };
                             _db.GetCollection<Foo>(resourceType.Name).ReplaceOne(x => x.Id == e.Id, updatedFoo);
                             break;

@@ -1,7 +1,5 @@
 ﻿using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.Events;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
 using System;
 using System.Collections.Generic;
 

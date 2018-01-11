@@ -19,6 +19,8 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            //Initialize resource types
             ResourceTypes.Initialize();
         }
 

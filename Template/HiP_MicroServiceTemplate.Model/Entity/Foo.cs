@@ -1,5 +1,4 @@
 ﻿using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest;
-using System;
 
 namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
 {
