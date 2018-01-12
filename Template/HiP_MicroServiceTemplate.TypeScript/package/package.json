@@ -1,7 +1,7 @@
 {
   "name": "npmPackageName(l)",
   "version": "3.2.0",
-  "description": "Typescript client for HiP_MicroServiceTemplate",
+  "description": "TypeScript client for HiP_MicroServiceTemplate",
   "repository": {
     "type": "git",
     "url": "https://github.com/HiP-App/HiP_MicroServiceTemplate/"

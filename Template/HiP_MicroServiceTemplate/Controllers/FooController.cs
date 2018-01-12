@@ -96,8 +96,8 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
 
             if (!_entityIndex.Exists(ResourceTypes.Foo, id))
                 return NotFound();
-            var oldFoo = await EventStreamExtensions.GetCurrentEntityAsync<FooArgs>(_eventStore.EventStream, ResourceTypes.Foo, id);
 
+            var oldFoo = await _eventStore.EventStream.GetCurrentEntityAsync<FooArgs>(ResourceTypes.Foo, id);
             await EntityManager.UpdateEntityAsync(_eventStore, oldFoo, args, ResourceTypes.Foo, id, User.Identity.GetUserIdentity());
             return NoContent();
         }

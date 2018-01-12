@@ -17,7 +17,7 @@
             "defaultValue": "false"
         },
 		
-		"npmPackageName": {
+		"NpmPackageName": {
             "type": "parameter",
             "datatype": "text",
             "defaultValue": "#Your NPM Package Name here#",
@@ -27,7 +27,7 @@
 			"type": "generated",
 			"generator": "casing",
 			"parameters" : {
-				"source" : "npmPackageName",
+				"source" : "NpmPackageName",
 				"toLower" : true
 			},
 			"replaces": "npmPackageName(l)"			

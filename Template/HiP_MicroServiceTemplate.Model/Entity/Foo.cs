@@ -20,13 +20,10 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
             IsBar = args.IsBar;
         }
 
-        public FooArgs CreateFooArgs()
+        public FooArgs CreateFooArgs() => new FooArgs()
         {
-            return new FooArgs()
-            {
-                DisplayName = DisplayName,
-                IsBar = IsBar
-            };
-        }
+            DisplayName = DisplayName,
+            IsBar = IsBar
+        };
     }
 }
