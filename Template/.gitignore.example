@@ -5,8 +5,13 @@
 appsettings.Development.json
 
 # Generated files (NSwag)
-HiP_MicroServiceTemplate.Sdk/swagger.json
+swagger.json
 HiP_MicroServiceTemplate.Sdk/*.g.cs
+HiP_MicroServiceTemplate.TypeScript/package/dist/
+HiP_MicroServiceTemplate.TypeScript/package/lib/
+HiP_MicroServiceTemplate.TypeScript/package/node_modules/
+HiP_MicroServiceTemplate.TypeScript/package/*.tgz
+HiP_MicroServiceTemplate.TypeScript/package/.npmrc
 
 # User-specific files
 *.suo

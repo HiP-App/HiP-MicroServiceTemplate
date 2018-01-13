@@ -1,6 +1,5 @@
 ﻿using PaderbornUniversity.SILab.Hip.EventSourcing;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
+using PaderbornUniversity.SILab.Hip.EventSourcing.Events;
 using System;
 using System.Collections.Generic;
 
@@ -55,17 +54,17 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
         {
             switch (e)
             {
-                case ICreateEvent ev:
+                case CreatedEvent ev:
                     lock (_lockObject)
                     {
-                        var owner = (ev as IUserActivityEvent)?.UserId;
+                        var owner = ev.UserId;
                         var info = GetOrCreateEntityTypeInfo(ev.GetEntityType());
                         info.MaximumId = Math.Max(info.MaximumId, ev.Id);
                         info.Entities.Add(ev.Id, new EntityInfo { UserId = owner });
-                    }
-                    break;
+                        break;
 
-                case IDeleteEvent ev:
+                    }
+                case DeletedEvent ev:
                     lock (_lockObject)
                     {
                         var info3 = GetOrCreateEntityTypeInfo(ev.GetEntityType());

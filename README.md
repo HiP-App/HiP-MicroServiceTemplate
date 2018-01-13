@@ -1,12 +1,14 @@
-# HiP-MicroServiceTemplate
+ # HiP-MicroServiceTemplate
 A custom "dotnet new"-template for creating backend services that make use of event sourcing.
 
 ## How to Use
 1. Clone the repository or download as ZIP-file
 1. Install the template: `dotnet new --install /path/to/downloaded/repo/Template`
-1. Create a new solution using the template: `dotnet new hipapi [--MakeSdk] -o MyNewService`
+1. Create a new solution using the template: `dotnet new hipapi [--MakeSdk --NpmPackageName MyNewService] -o MyNewService`
 
-The switch `--MakeSdk` is optional: Including it enables automatic REST client generation via NSwag.
+**Switches**:
+* `--MakeSdk` (optional): Including it enables automatic REST client generation via NSwag.
+* `--NpmPackageName` (optional): Provides the name for the generated NPM package. This switch should be used together with the `--MakeSdk` switch. 
 
 ## Features
 ✔ **Like DataStore**: Creates a service with a structure similar to [HiP-DataStore](https://github.com/HiP-App/HiP-DataStore) and other services!  

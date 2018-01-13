@@ -2,12 +2,13 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
+using PaderbornUniversity.SILab.Hip.EventSourcing.Events;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity;
-using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Events;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using System;
+using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
 {
@@ -47,20 +48,53 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core
             // TODO: Handle incoming events by updating the Mongo database
             switch (ev)
             {
-                case FooCreated e:
-                    var foo = new Foo
+                case CreatedEvent e:
+                    var resourceType = e.GetEntityType();
+                    switch (resourceType)
                     {
-                        Id = e.Id,
-                        DisplayName = e.Properties.DisplayName,
-                        IsBar = e.Properties.IsBar,
-                        Timestamp = e.Timestamp,
-                        UserId = e.UserId
-                    };
-                    _db.GetCollection<Foo>(ResourceType.Foo.Name).InsertOne(foo);
+                        case ResourceType _ when resourceType == ResourceTypes.Foo:
+                            var foo = new Foo
+                            {
+                                Id = e.Id,
+                                Timestamp = e.Timestamp,
+                                UserId = e.UserId
+                            };
+                            _db.GetCollection<Foo>(ResourceTypes.Foo.Name).InsertOne(foo);
+                            break;
+                    }
+
                     break;
 
-                case FooDeleted e:
-                    _db.GetCollection<Foo>(ResourceType.Foo.Name).DeleteOne(x => x.Id == e.Id);
+                case PropertyChangedEvent e:
+                    resourceType = e.GetEntityType();
+                    switch (resourceType)
+                    {
+                        case ResourceType _ when resourceType == ResourceTypes.Foo:
+                            var originalFoo = _db.GetCollection<Foo>(resourceType.Name).AsQueryable().First(x => x.Id == e.Id);
+                            var args = originalFoo.CreateFooArgs();
+                            e.ApplyTo(args);
+                            var updatedFoo = new Foo(args)
+                            {
+                                Id = e.Id,
+                                Timestamp = e.Timestamp,
+                                UserId = originalFoo.UserId
+                            };
+                            _db.GetCollection<Foo>(resourceType.Name).ReplaceOne(x => x.Id == e.Id, updatedFoo);
+                            break;
+                    }
+
+                    break;
+
+
+                case DeletedEvent e:
+                    resourceType = e.GetEntityType();
+                    switch (resourceType)
+                    {
+                        case ResourceType _ when resourceType == ResourceTypes.Foo:
+                            _db.GetCollection<Foo>(ResourceTypes.Foo.Name).DeleteOne(x => x.Id == e.Id);
+                            break;
+                    }
+
                     break;
             }
         }

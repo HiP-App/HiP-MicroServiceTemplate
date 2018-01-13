@@ -1,0 +1,28 @@
+{
+  "name": "npmPackageName(l)",
+  "version": "3.2.0",
+  "description": "TypeScript client for HiP_MicroServiceTemplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiP-App/HiP_MicroServiceTemplate/"
+  },
+  "keywords": [],
+  "author": "",
+  "main": "./dist/HiP_MicroServiceTemplate.js",
+  "types": "./dist/HiP_MicroServiceTemplate.d.ts",
+  "license": "Apache-2.0",
+  "outDir": "./dist",
+  "dependencies": {
+    "@angular/core": "4.3.6",
+    "@angular/http": "4.3.6",
+    "@angular/platform-browser": "4.3.6",
+    "@angular/common": "4.3.6",
+    "rxjs": "5.4.3",
+    "typescript": "2.5.2",
+    "zone.js": "0.8.18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  }
+}

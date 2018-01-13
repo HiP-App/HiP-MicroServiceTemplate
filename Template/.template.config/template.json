@@ -15,7 +15,23 @@
             "type": "parameter",
             "datatype": "bool",
             "defaultValue": "false"
-        }
+        },
+		
+		"NpmPackageName": {
+            "type": "parameter",
+            "datatype": "text",
+            "defaultValue": "#Your NPM Package Name here#",
+        },		
+		
+		"npmPackageNameGenerated":{
+			"type": "generated",
+			"generator": "casing",
+			"parameters" : {
+				"source" : "NpmPackageName",
+				"toLower" : true
+			},
+			"replaces": "npmPackageName(l)"			
+		}
     },
 
     "sources": [
@@ -26,8 +42,10 @@
                     "condition": "(!MakeSdk)",
                     "exclude": [
                         "HiP_MicroServiceTemplate.Sdk/**/*",
+						"HiP_MicroServiceTemplate.TypeScript/**/*",
                         "NuGetPack.ps1",
-                        "NPMPack.ps1"
+                        "NPMPack.ps1",
+						"swagger.json"
                     ]
                 },
                 {

@@ -1,4 +1,6 @@
-﻿namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
+﻿using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest;
+
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
 {
     /// <summary>
     /// A sample entity type. Entity types are types of which the objects are persisted
@@ -9,5 +11,19 @@
         public string DisplayName { get; set; }
 
         public bool IsBar { get; set; }
+
+        public Foo() { }
+
+        public Foo(FooArgs args)
+        {
+            DisplayName = args.DisplayName;
+            IsBar = args.IsBar;
+        }
+
+        public FooArgs CreateFooArgs() => new FooArgs()
+        {
+            DisplayName = DisplayName,
+            IsBar = IsBar
+        };
     }
 }

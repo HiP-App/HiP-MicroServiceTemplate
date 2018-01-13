@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate", "HiP_MicroServiceTemplate\HiP_MicroServiceTemplate.csproj", "{34A40FDD-0A66-499E-9B64-9C257BA83DF0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Model", "HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj", "{3D20234B-5937-4105-8384-31AC0A0FC09F}"
 EndProject
 #if (MakeSdk)
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiP_MicroServiceTemplate.Sdk", "HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj", "{99A3A08A-CC11-4DF1-9745-44CADA104BC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Sdk", "HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj", "{99A3A08A-CC11-4DF1-9745-44CADA104BC7}"
 EndProject
 #endif
 Global
