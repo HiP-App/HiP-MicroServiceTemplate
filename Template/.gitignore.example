@@ -5,7 +5,7 @@
 appsettings.Development.json
 
 # Generated files (NSwag)
-HiP_MicroServiceTemplate.Sdk/swagger.json
+swagger.json
 HiP_MicroServiceTemplate.Sdk/*.g.cs
 HiP_MicroServiceTemplate.TypeScript/package/dist/
 HiP_MicroServiceTemplate.TypeScript/package/lib/
