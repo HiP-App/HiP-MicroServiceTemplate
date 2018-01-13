@@ -12,11 +12,11 @@ using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using PaderbornUniversity.SILab.Hip.Webservice;
 
-namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Tests
 {
-    public class Startup
+    public class TestStartup
     {
-        public Startup(IConfiguration configuration)
+        public TestStartup(IConfiguration configuration)
         {
             Configuration = configuration;
 
@@ -39,6 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
             // Register services that can be injected into controllers and other services
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
             services
+                .AddSingleton<IEventStore>(FakeEventStore.Instance)
+                .AddSingleton<IMongoDbContext>(FakeMongoDbContext.Instance)
                 .AddSingleton<EventStoreService>()
                 .AddSingleton<CacheDatabaseManager>()
                 .AddSingleton<InMemoryCache>()
@@ -49,12 +51,8 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
 
             // Configure authentication
             services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Audience = authConfig.Value.Audience;
-                    options.Authority = authConfig.Value.Authority;
-                });
+                .AddAuthentication(FakeAuthentication.AuthenticationScheme)
+                .AddFakeAuthentication();
 
             // Configure authorization
             var domain = authConfig.Value.Authority;
@@ -78,19 +76,8 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
             // something), so we manually request an instance here
             app.ApplicationServices.GetService<CacheDatabaseManager>();
 
-            app.UseRequestSchemeFixer();
-            app.UseCors(builder =>
-            {
-                var corsEnvConf = corsConfig.Value.Cors[env.EnvironmentName];
-                builder
-                    .WithOrigins(corsEnvConf.Origins)
-                    .WithMethods(corsEnvConf.Methods)
-                    .WithHeaders(corsEnvConf.Headers)
-                    .WithExposedHeaders(corsEnvConf.ExposedHeaders);
-            });
             app.UseAuthentication();
             app.UseMvc();
-            app.UseSwaggerUiHip();
         }
     }
 }
