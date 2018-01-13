@@ -9,19 +9,21 @@ A custom "dotnet new"-template for creating backend services that make use of ev
 **Switches**:
 * `--MakeSdk` (optional): Including it enables automatic REST client generation via NSwag.
 * `--NpmPackageName` (optional): Provides the name for the generated NPM package. This switch should be used together with the `--MakeSdk` switch. 
+* `--MakeTests` (optional): When included, a test project is generated for integration testing
 
 ## Features
 ✔ **Like DataStore**: Creates a service with a structure similar to [HiP-DataStore](https://github.com/HiP-App/HiP-DataStore) and other services!  
 ✔ **Includes Auth-stuff**: Authentication and authorization work right out of the box!  
 ✔ **Ready to Run**: The generated service is immediately executable with no further configuration (*1)!  
-✔ **Sample Code**: Includes a sample resource type *Foo* with all the event classes, DTO classes and controller methods  
-✔ **Swagger**: Sets up Swagger and Swagger UI  
-✔ **Auto-Generated SDK**: Sets up [NSwag](https://github.com/RSuter/NSwag) for auto-generation of REST client code (*2)  
-✔ **Ready for Docker**: Includes a Dockerfile so the generated service can be easily deployed to our Docker cloud  
-✔ **Ready for Git**: Includes gitignore-file and gitattributes-file
+✔ **Sample Code**: Includes a sample resource type *Foo* with all the DTO classes and controller methods!  
+✔ **Swagger**: Sets up Swagger and Swagger UI!  
+✔ **Auto-Generated SDK**: Sets up [NSwag](https://github.com/RSuter/NSwag) for auto-generation of REST client code (*2)!  
+✔ **Integration Tests**: Scaffolds an xUnit test project to verify the correctness of the service (*2)!  
+✔ **Ready for Docker**: Includes a Dockerfile so the generated service can be easily deployed to our Docker cloud!  
+✔ **Ready for Git**: Includes gitignore-file and gitattributes-file!
 
 (*1) Note: Before running the generated service, make sure MongoDB and EventStore are running.  
-(*2) Note: This is optional.
+(*2) Note: This is optional, see command line switches above.
 
 ## Links
 The following topics are recommended to understand the [.NET template engine](https://github.com/dotnet/templating):

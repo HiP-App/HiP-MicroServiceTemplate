@@ -7,10 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Model", "HiP_MicroServiceTemplate.Model\HiP_MicroServiceTemplate.Model.csproj", "{3D20234B-5937-4105-8384-31AC0A0FC09F}"
 EndProject
+#if (MakeSdk)
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HiP_MicroServiceTemplate.Sdk", "HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj", "{99A3A08A-CC11-4DF1-9745-44CADA104BC7}"
 EndProject
+#endif
+#if (MakeTests)
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiP_MicroServiceTemplate.Tests", "HiP_MicroServiceTemplate.Tests\HiP_MicroServiceTemplate.Tests.csproj", "{B62A6D5B-29B2-436F-ACFD-BDDDDE909B10}"
 EndProject
+#endif
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
