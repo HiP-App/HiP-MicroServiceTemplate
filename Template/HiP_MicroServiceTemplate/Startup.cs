@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using NSwag.AspNetCore;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using PaderbornUniversity.SILab.Hip.EventSourcing.Mongo;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
@@ -42,7 +43,9 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
                 .AddSingleton<EventStoreService>()
                 .AddSingleton<CacheDatabaseManager>()
                 .AddSingleton<InMemoryCache>()
-                .AddSingleton<IDomainIndex, EntityIndex>();
+                .AddSingleton<IDomainIndex, EntityIndex>()
+                .AddSingleton<IMongoDbContext, MongoDbContext>()
+                .AddSingleton<IEventStore, EventSourcing.EventStoreLlp.EventStore>();
 
             var serviceProvider = services.BuildServiceProvider();
             var authConfig = serviceProvider.GetService<IOptions<AuthConfig>>();

@@ -12,18 +12,22 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Entity
 
         public bool IsBar { get; set; }
 
+        public int Value { get; set; }
+
         public Foo() { }
 
         public Foo(FooArgs args)
         {
             DisplayName = args.DisplayName;
             IsBar = args.IsBar;
+            Value = args.Value;
         }
 
         public FooArgs CreateFooArgs() => new FooArgs()
         {
             DisplayName = DisplayName,
-            IsBar = IsBar
+            IsBar = IsBar,
+            Value = Value
         };
     }
 }
