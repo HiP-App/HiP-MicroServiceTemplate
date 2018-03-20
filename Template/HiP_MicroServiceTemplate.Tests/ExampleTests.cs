@@ -7,6 +7,9 @@ using PaderbornUniversity.SILab.Hip.EventSourcing.Mongo;
 using PaderbornUniversity.SILab.Hip.EventSourcing.Mongo.Test;
 using System.Threading.Tasks;
 using Xunit;
+#if (MakeSdk)
+using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate;
+#endif
 
 namespace PaderbornUniversity.SILab.Hip.HiP._MicroServiceTemplate.Tests
 {
@@ -26,9 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.HiP._MicroServiceTemplate.Tests
         [Fact]
         public async Task Test1()
         {
+#if (!MakeSdk)
             //Write test code here
-
-#if (MakeSdk)
+            await Task.CompletedTask;
+#else
             //This is an example for testing genereated clients
             FooClient client = new FooClient("")
             {
@@ -48,8 +52,6 @@ namespace PaderbornUniversity.SILab.Hip.HiP._MicroServiceTemplate.Tests
             Assert.Equal(args.DisplayName, result.DisplayName);
             Assert.Equal(args.IsBar, result.IsBar);
             Assert.Equal(args.Value, result.Value);
-#else
-            await Task.CompletedTask;
 #endif
         }
     }
