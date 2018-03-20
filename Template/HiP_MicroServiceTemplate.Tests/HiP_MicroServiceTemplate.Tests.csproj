@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HiP_MicroServiceTemplate\HiP_MicroServiceTemplate.csproj" />
     <!--#if (MakeSdk)-->
     <ProjectReference Include="..\HiP_MicroServiceTemplate.Sdk\HiP_MicroServiceTemplate.Sdk.csproj" />
-    <ProjectReference Include="..\HiP_MicroServiceTemplate\HiP_MicroServiceTemplate.csproj" />
     <!--#endif-->
   </ItemGroup>
 

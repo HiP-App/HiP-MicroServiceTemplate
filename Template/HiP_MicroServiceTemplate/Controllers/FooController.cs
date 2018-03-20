@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var foos = _db.Database.GetCollection<Foo>(ResourceTypes.Foo.Name)
+            var foos = _db.Database.GetCollection<Foo>(ResourceTypes.Foo)
                 .AsQueryable()
                 .ToList();
 
@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var foo = _db.Database.GetCollection<Foo>(ResourceTypes.Foo.Name)
+            var foo = _db.Database.GetCollection<Foo>(ResourceTypes.Foo)
                 .AsQueryable()
                 .FirstOrDefault(x => x.Id == id);
 
@@ -64,6 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Controllers
                 Id = id,
                 DisplayName = foo.DisplayName,
                 IsBar = foo.IsBar,
+                Value = foo.Value,
                 UserId = foo.UserId,
                 Timestamp = foo.Timestamp
             };
