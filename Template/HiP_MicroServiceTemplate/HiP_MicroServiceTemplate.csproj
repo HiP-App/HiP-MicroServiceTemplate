@@ -14,10 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="HiP-WebserviceLib" Version="3.1.0-develop" />
-    <PackageReference Include="NSwag.AspNetCore" Version="11.12.16" />
+    <PackageReference Include="HiP-WebserviceLib" Version="4.0.0-develop" />
+    <PackageReference Include="NSwag.AspNetCore" Version="11.15.4" />
     <!--#if (MakeSdk)-->
-    <PackageReference Include="NSwag.MSBuild" Version="11.12.16" />
+    <PackageReference Include="NSwag.MSBuild" Version="11.15.4" />
     <!--#endif-->
   </ItemGroup>
 

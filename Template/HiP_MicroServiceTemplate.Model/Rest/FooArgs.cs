@@ -11,5 +11,7 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
         public string DisplayName { get; set; }
 
         public bool IsBar { get; set; }
+
+        public int Value { get; set; }
     }
 }

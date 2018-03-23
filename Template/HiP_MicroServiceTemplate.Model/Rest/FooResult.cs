@@ -13,8 +13,11 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model.Rest
 
         public bool IsBar { get; set; }
 
+        public int Value { get; set; }
+
         public string UserId { get; set; }
 
         public DateTimeOffset Timestamp { get; set; }
+
     }
 }

@@ -1,25 +1,34 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NSwag.AspNetCore;
 using PaderbornUniversity.SILab.Hip.EventSourcing;
 using PaderbornUniversity.SILab.Hip.EventSourcing.EventStoreLlp;
+using PaderbornUniversity.SILab.Hip.EventSourcing.FakeStore;
 using PaderbornUniversity.SILab.Hip.EventSourcing.Mongo;
+using PaderbornUniversity.SILab.Hip.EventSourcing.Mongo.Test;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Core;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Model;
 using PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate.Utility;
 using PaderbornUniversity.SILab.Hip.Webservice;
+using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
+namespace PaderbornUniversity.SILab.Hip.HiP._MicroServiceTemplate.Tests
 {
-    public class Startup
+    public class TestStartup
     {
-        public Startup(IConfiguration configuration)
+        public TestStartup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddInMemoryCollection(new Dictionary<string, string>
+                {
+                    { "EventStore:Host", "" },
+                    { "EventStore:Stream", "test" }
+                })
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
 
             //Initialize resource types
             ResourceTypes.Initialize();
@@ -40,24 +49,20 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
             // Register services that can be injected into controllers and other services
             // (see https://docs.microsoft.com/aspnet/core/fundamentals/dependency-injection#registering-your-own-services)
             services
+                .AddSingleton<IEventStore, FakeEventStore>()
+                .AddSingleton<IMongoDbContext, FakeMongoDbContext>()
                 .AddSingleton<EventStoreService>()
                 .AddSingleton<CacheDatabaseManager>()
                 .AddSingleton<InMemoryCache>()
-                .AddSingleton<IDomainIndex, EntityIndex>()
-                .AddSingleton<IMongoDbContext, MongoDbContext>()
-                .AddSingleton<IEventStore, EventSourcing.EventStoreLlp.EventStore>();
+                .AddSingleton<IDomainIndex, EntityIndex>();
 
             var serviceProvider = services.BuildServiceProvider();
             var authConfig = serviceProvider.GetService<IOptions<AuthConfig>>();
 
             // Configure authentication
             services
-                .AddAuthentication(options => options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Audience = authConfig.Value.Audience;
-                    options.Authority = authConfig.Value.Authority;
-                });
+                .AddAuthentication(FakeAuthentication.AuthenticationScheme)
+                .AddFakeAuthenticationScheme();
 
             // Configure authorization
             var domain = authConfig.Value.Authority;
@@ -74,26 +79,13 @@ namespace PaderbornUniversity.SILab.Hip.HiP_MicroServiceTemplate
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IOptions<CorsConfig> corsConfig)
         {
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
 
             // CacheDatabaseManager should start up immediately (not only when injected into a controller or
             // something), so we manually request an instance here
             app.ApplicationServices.GetService<CacheDatabaseManager>();
 
-            app.UseRequestSchemeFixer();
-            app.UseCors(builder =>
-            {
-                var corsEnvConf = corsConfig.Value.Cors[env.EnvironmentName];
-                builder
-                    .WithOrigins(corsEnvConf.Origins)
-                    .WithMethods(corsEnvConf.Methods)
-                    .WithHeaders(corsEnvConf.Headers)
-                    .WithExposedHeaders(corsEnvConf.ExposedHeaders);
-            });
             app.UseAuthentication();
             app.UseMvc();
-            app.UseSwaggerUiHip();
         }
     }
 }

@@ -1,4 +1,4 @@
- # HiP-MicroServiceTemplate
+# HiP-MicroServiceTemplate
 A custom "dotnet new"-template for creating backend services that make use of event sourcing.
 
 ## How to Use
@@ -17,6 +17,7 @@ A custom "dotnet new"-template for creating backend services that make use of ev
 ✔ **Sample Code**: Includes a sample resource type *Foo* with all the event classes, DTO classes and controller methods  
 ✔ **Swagger**: Sets up Swagger and Swagger UI  
 ✔ **Auto-Generated SDK**: Sets up [NSwag](https://github.com/RSuter/NSwag) for auto-generation of REST client code (*2)  
+✔ **Integration Tests**: Scaffolds an xUnit test project to verify the correctness of the service  
 ✔ **Ready for Docker**: Includes a Dockerfile so the generated service can be easily deployed to our Docker cloud  
 ✔ **Ready for Git**: Includes gitignore-file and gitattributes-file
 
